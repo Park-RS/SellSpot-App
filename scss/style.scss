@@ -155,43 +155,6 @@ button {
   margin-top: 24px;
   opacity: 0.3;
 }
-@media screen and (max-width: 720px) {
-  .header__categories {
-    flex-wrap: wrap;
-  }
-  .categories__button {
-    padding: 8px 20px;
-  }
-  .header__title {
-    font-size: 24px;
-  }
-  .categories__form {
-    margin-top: 10px;
-    & input {
-      padding: 16px 12px;
-    }
-
-    & button {
-      max-width: 107px;
-
-      & span {
-        display: none;
-      }
-    }
-  }
-  .item__title {
-    text-align: center;
-  }
-}
-@media screen and (max-width: 1295px) {
-  .item__title {
-    text-align: center;
-  }
-  .header__title {
-    text-align: center;
-  }
-}
-
 .item {
 }
 
@@ -204,11 +167,12 @@ button {
 }
 .item__row {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   row-gap: 9px;
   column-gap: 24px;
   flex-wrap: wrap;
 }
+
 .card {
 }
 .card__inner {
@@ -253,4 +217,57 @@ button {
   color: var(--light-text-secondary-text, #64748b);
   line-height: 20px;
   margin-left: 1px;
+}
+
+@media screen and (max-width: 1325px) {
+  .item__title {
+    text-align: center;
+  }
+  .header__title {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1325px) {
+  .item__title {
+    text-align: center;
+  }
+  .header__title {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 995px) {
+}
+@media screen and (max-width: 720px) {
+  .header__categories {
+    flex-wrap: wrap;
+  }
+  .categories__button {
+    padding: 8px 20px;
+  }
+  .header__title {
+    font-size: 24px;
+  }
+  .categories__form {
+    margin-top: 10px;
+    & input {
+      padding: 16px 12px;
+    }
+
+    & button {
+      max-width: 107px;
+
+      & span {
+        display: none;
+      }
+    }
+  }
+  .item__title {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 665px) {
+  .item__row {
+    justify-content: center;
+  }
 }
