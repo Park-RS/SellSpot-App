@@ -1,0 +1,320 @@
+.container
+{
+	max-width: 1296px;
+	margin: 0 auto;
+}
+
+body
+{
+	font-family: 'Inter';
+	font-size: 14px;
+}
+
+button
+{
+	font-family: 'Inter';
+}
+
+.wrapper {
+}
+.header {
+	position: sticky;
+	top: 0;
+	background-color: #fff;
+	z-index: 2;
+}
+.header__up {
+	background-color: #1e293b;
+	max-height: 52px;
+	padding: 8px 0px;
+	
+}
+
+.header__inner {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	& button 
+	{
+		background-color: #1e293b;
+	}
+	& p 
+	{
+		color: #fff;
+	}
+}
+.header__login {
+	margin-right: 27px;
+	& button 
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 8px 0px;
+
+	}
+	
+	& img 
+	{
+		padding-right: 9px;
+		line-height: 20px;
+	}
+	& p 
+	{
+		font-weight: 400;
+	
+	}
+
+}
+.header__ad {
+
+	& button 
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 6px 12px 6px 12px;
+		background-color: #3B82F6;
+		border-radius: 4px;
+		&:hover
+		{
+			background-color: #2e72e0;
+		}
+	}
+	
+	& p 
+	{
+		
+		margin-right: 4px;
+		font-weight: 500;
+		text-align: left;
+		letter-spacing: 0.3px;
+		line-height: 20px;
+	}
+	
+}
+
+.header__down {
+	margin: 24px 0px 0px 1px;
+}
+
+
+.header__title {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 36px; 
+	color: var(--light-text-default-text, #1E293B);
+
+}
+.header__categories {
+	display: flex;
+	justify-content: center;
+	
+}
+
+.categories__button {
+	
+	margin-left: 25px;
+	padding: 0px 12px 0px 12px;
+	border-radius: 4px;
+	border: 1px solid var(--light-utility-primary, #3B82F6);
+	background-color: #fff;
+	& span 
+	{
+		display: inline-block;
+		letter-spacing: 0.3px;
+		font-weight: 500;
+		line-height: 20px; 
+		color: #3B82F6;
+	}
+	& img 
+	{
+		padding-right: 4px;
+	}
+}
+.categories__form {
+	display: flex;
+	margin-left: 12px;
+	width: 822.5px;
+	
+	
+	& input 
+	{
+		border: 1px solid #000;
+		border-right: none;
+		border-radius: 4px 0px 0px 4px;
+		width: 100%;
+		padding-left: 11px;
+		
+		&:focus
+		{
+			box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.75);
+			font-size: 14px;
+		}
+
+		&::placeholder
+		{
+			letter-spacing: 0.4px;
+		}
+		
+	}
+
+	& button 
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 8px 12px 8px 13px;
+		background: var(--light-utility-primary, #3B82F6);
+		border-radius: 0px 4px 4px 0px;
+		
+		& span 
+		{
+			display: inline-block;
+			font-weight: 500;
+			line-height: 20px;
+			color: #fff;
+		}
+		& img 
+		{
+			padding-left: 9px;
+		}
+	}
+}
+.header__line
+{
+	border: 1px solid #cbd5e1;
+	margin-top: 24px;
+	opacity: 0.3;
+	
+}
+@media screen and (max-width: 720px)
+{
+	.header__categories
+	{
+		flex-wrap: wrap;
+		
+	}
+	.categories__button
+	{
+		
+		padding: 8px 20px;
+	}
+	.header__title 
+	{
+		font-size: 24px;
+		
+	}
+	.categories__form
+	
+
+	{
+		margin-top: 10px;
+		& input 
+		{
+			padding: 16px 12px;
+			
+		}
+		
+		
+		& button 
+		{
+			max-width: 107px;
+			
+			& span 
+			{
+				display: none;
+			}
+		}
+
+	}
+	.item__title 
+	{
+		text-align: center;
+	}
+}
+@media screen and (max-width: 1295px)
+{
+	.item__title 
+	{
+		text-align: center;
+	}
+	.header__title 
+	{
+		text-align: center;
+	}
+}
+
+.item {
+}
+
+.item__title {
+	margin: 32px 0px 0px 1px;
+	color: var(--light-text-default-text, #1E293B);
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 32px;
+}
+.item__row {
+	display: flex;
+	justify-content: center;
+	row-gap: 9px;
+	column-gap: 24px;
+	flex-wrap: wrap;
+	
+
+}
+.card {
+	
+}
+.card__inner {
+	margin-top: 23px;
+	
+}
+.card__inner:hover
+{
+	& img 
+	{
+		transform: scale(1.1);
+	}
+	& .card__title
+	{
+	
+		color: #0EA5E9;
+	}
+}
+
+.card__block
+{
+	overflow: hidden;
+	border-radius: 4px;
+}
+.card__img
+{
+	transition: transform 0.3s ease;
+
+}
+.card__title {
+	color: var(--light-text-primary-text, #3B82F6);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 24px;
+	margin-top: 8px;
+	letter-spacing: 0.1px;
+}
+.card__price {
+	color: var(--light-text-default-text, #1E293B);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 24px; 
+}
+.card__address {
+	color: var(--light-text-secondary-text, #64748B);
+	line-height: 20px; 
+	margin-left: 1px;
+}
+.card__date {
+	color: var(--light-text-secondary-text, #64748B);
+	line-height: 20px;
+	margin-left: 1px; 
+}
