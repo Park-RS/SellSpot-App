@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registration',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-
+	constructor(public dialogRef: MatDialogRef<RegistrationComponent>) {}
+	close() {
+		this.dialogRef.close();
+	  }
 }

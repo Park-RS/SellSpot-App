@@ -39,13 +39,13 @@
   }
   .header__login {
 	margin-right: 26px;
-	& a {
+	& button {
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
 	  padding: 8px 0px;
 	}
-	& a:hover {
+	& button:hover {
 	  & p {
 		color: red;
 	  }

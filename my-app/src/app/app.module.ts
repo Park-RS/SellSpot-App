@@ -1,19 +1,16 @@
-import { SearchInputComponent } from './layout/header/components/search/search-input/search-input.component';
+import { SearchInputComponent } from './components/search/search-input/search-input.component';
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { CategoryComponent } from './layout/header/components/search/category/category.component';
+import { CategoryComponent } from './components/search/category/category.component';
 import { BulletinBoardComponent } from './components/bulletin-board/bulletin-board.component';
-import { LoginComponent } from './layout/header/components/Authorization/login/login.component';
-import { RegistrationComponent } from './layout/header/components/Authorization/registration/registration.component';
+import { RegistrationComponent } from './components/Authorization/registration/registration.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const appRoutes: Routes = [
-	{ path: '', component:BulletinBoardComponent},
-    { path: 'auth', component: LoginComponent },
-];
 @NgModule({
     declarations: [
         AppComponent,
@@ -21,11 +18,18 @@ const appRoutes: Routes = [
         CategoryComponent,
         SearchInputComponent,
         BulletinBoardComponent,
-        LoginComponent,
         RegistrationComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatButtonModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+	
+}
