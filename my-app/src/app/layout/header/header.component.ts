@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/components/Authorization/login/login.component';
 
 @Component({
@@ -8,16 +9,11 @@ import { LoginComponent } from 'src/app/components/Authorization/login/login.com
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-    
-	constructor(private matDialog:MatDialog){}
-	openDialog()
-	{
-	  this.matDialog.open(LoginComponent,
-		  {
-			  width:'416px',
-			
-		  })
-	  
-	}
-	
+    constructor(private matDialog: MatDialog, private router: Router) {}
+    openDialog() {
+        this.matDialog.open(LoginComponent, {
+            width: '416px',
+        });
+		
+    }
 }

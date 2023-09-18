@@ -7,9 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { CategoryComponent } from './components/search/category/category.component';
-import { BulletinBoardComponent } from './components/bulletin-board/bulletin-board.component';
 import { RegistrationComponent } from './components/Authorization/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BulletinBoardModule } from './components/bulletin-board/bulletin-board.module';
 
 @NgModule({
     declarations: [
@@ -17,12 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         HeaderComponent,
         CategoryComponent,
         SearchInputComponent,
-        BulletinBoardComponent,
         RegistrationComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+		BulletinBoardModule,
         BrowserAnimationsModule,
         MatDialogModule,
         MatButtonModule,
