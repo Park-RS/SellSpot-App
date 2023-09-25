@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
     declarations: [],
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, LoginRoutingModule],
 })
 export class LoginModule {}

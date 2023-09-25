@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -43,6 +44,7 @@ import {DropdownModule} from 'primeng/dropdown';
 		InputTextareaModule,
 		InputNumberModule,
 		DropdownModule,
+		HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

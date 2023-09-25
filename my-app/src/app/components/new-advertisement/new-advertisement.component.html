@@ -6,7 +6,7 @@
                 <p>Выберите категорию <span>*</span></p>
                 <p-dropdown
                     [options]="cities"
-                    [(ngModel)]="selectedCity"
+                    
                     optionLabel="name"
                     styleClass="ad__select"
                     placeholder="Нажмите, чтобы выбрать"
@@ -61,7 +61,6 @@
                 <p>Цена</p>
                 <p-inputNumber
                     inputId="integeronly"
-                    [(ngModel)]="value1"
                     placeholder="0 ₽"
                     mode="currency"
                     currency="RUB"
