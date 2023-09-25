@@ -1,0 +1,120 @@
+@mixin inputstyle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 416px;
+    height: 48px;
+}
+.ad {
+}
+.ad__items {
+    margin-top: 32px;
+    & h4 {
+		
+        font-family: "Inter";
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+    }
+    & span {
+        color: red;
+    }
+    & p {
+        font-family: "Inter";
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+.select {
+& p 
+{
+	margin-top: 24px;
+}
+}
+
+:host ::ng-deep .ad__select {
+    @include inputstyle;
+	margin-top: 8px;
+}
+
+.ad__name {
+	margin-top: 16px;
+    & input {
+		margin-top: 8px;
+        @include inputstyle;
+    }
+}
+.ad__comment {
+	margin-top: 16px;
+    & textarea {
+		margin-top: 8px;
+        width: 832px;
+        height: 144px;
+    }
+}
+.ad__address {
+	margin-top: 16px;
+    & input {
+        width: 832px;
+        height: 48px;
+    }
+}
+.ad__image {
+	margin-top: 16px;
+    width: 832px;
+    height: 64px;
+	padding-left: 16px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid var(--light-surfaces-border, #e2e8f0);
+    background: var(--light-surfaces-light-50, #f8fafc);
+
+    & button {
+		margin-right: 16px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: var(--light-utility-primary, #3b82f6);
+        color: var(--light-text-inverse-text, #fff);
+    }
+	&p 
+	{
+
+	}
+}
+.ad__price {
+	margin-top: 16px;
+	& ui-p-inputNumber {
+		width: 305px;
+	}
+	
+}
+.ad__post {
+	margin-top: 24px;
+    & button {
+        padding: 12px;
+        color: var(--light-text-inverse-text, #fff);
+        font-family: "Inter";
+        font-size: 20px;
+        line-height: 28px;
+        border-radius: 4px;
+        background: var(--light-utility-primary, #3b82f6);
+    }
+}
+.ad__info {
+	margin-top: 8px;
+    max-width: 306px;
+    line-height: 20px;
+    & p {
+        font-size: 14px;
+        color: var(--light-text-secondary-text, #64748b);
+    }
+    & a {
+        color: var(--light-text-primary-text, #3b82f6);
+    }
+
+}

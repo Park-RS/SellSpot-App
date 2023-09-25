@@ -1,15 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
-import { BulletinBoardComponent } from './components/bulletin-board/bulletin-board.component';
-import { LoginComponent } from './components/Authorization/login/login.component';
-import { RegistrationComponent } from './components/Authorization/registration/registration.component';
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     component: BulletinBoardComponent,
-
-    // },
     {
         path: '',
         loadChildren: () =>
@@ -18,23 +10,31 @@ const routes: Routes = [
             ),
     },
     {
+        title: 'Авторизация',
         path: 'login',
         loadChildren: () =>
             import('./components/Authorization/login/login.module').then(
-                (m) => m.LoginModule,
-            ),
+                (m) => m.LoginModule
+            ),	
+			outlet: 'modal',
+    },
+    {
+		title: 'Регистрация',
+        path: 'register',
+        loadChildren: () =>
+            import(
+                './components/Authorization/registration/registration.module'
+            ).then((m) => m.RegistrationModule),
 			outlet: 'modal',
     },
 	{
-        path: 'register',
+        title: 'Новое объявление',
+        path: 'new-advertisement',
         loadChildren: () =>
-            import('./components/Authorization/registration/registration.module').then(
-                (m) => m.RegistrationModule,
+            import('./components/new-advertisement/new-advertisement.module').then(
+                (m) => m.NewAdvertisementModule
             ),
-			outlet: 'modal',
     },
-    
-    
 ];
 
 @NgModule({
