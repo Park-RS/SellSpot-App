@@ -11,15 +11,13 @@ import { RegistrationComponent } from './components/Authorization/registration/r
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BulletinBoardModule } from './components/bulletin-board/bulletin-board.module';
 import { NewAdvertisementComponent } from './components/new-advertisement/new-advertisement.component';
-import { FormsModule } from '@angular/forms';
-import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { LoginComponent } from './components/Authorization/login/login.component';
 
 
 @NgModule({
@@ -29,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
         CategoryComponent,
         SearchInputComponent,
         RegistrationComponent,
-		NewAdvertisementComponent,
+        NewAdvertisementComponent,
+		LoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -38,13 +37,13 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserAnimationsModule,
         MatDialogModule,
         MatButtonModule,
-		FormsModule,
-		CascadeSelectModule,
-		InputTextModule,
-		InputTextareaModule,
-		InputNumberModule,
-		DropdownModule,
-		HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        InputTextareaModule,
+        InputNumberModule,
+        DropdownModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

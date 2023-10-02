@@ -19,36 +19,56 @@
             </div>
         </div>
         <div class="registration__box">
-            <form action="" class="registration__form" (ngSubmit)="userCreate()"> 
-                <input 
+            <form
+                [formGroup]="registerForm"
+                class="registration__form"
+                (ngSubmit)="userCreate()"
+            >
+                <input
                     class="registration__phone"
-					[(ngModel)]="login"
                     type="text"
                     name="login"
                     id=""
                     placeholder="Номер телефона"
+                    formControlName="login"
                 />
+                <span
+                    style="color: red"
+                    *ngIf="login && login.invalid && login.touched"
+                    >error</span
+                >
                 <input
                     class="registration__name"
-					[(ngModel)]="name"
                     type="text"
                     name="name"
                     id=""
                     placeholder="Имя"
+                    formControlName="name"
                 />
+                <span
+                    style="color: red"
+                    *ngIf="name && name.invalid && name.touched"
+                    >error</span
+                >
                 <input
                     class="registration__pass"
-					[(ngModel)]="password"
                     type="text"
                     name="pass"
                     id=""
                     placeholder="Пароль"
+                    formControlName="password"
                 />
-				<div class="registration__button" >
-					<button>Регистрация</button>
-				</div>
+                <span
+                    style="color: red"
+                    *ngIf="password && password.invalid && password.touched"
+                    >error</span
+                >
+                <div class="registration__button">
+                    <button [disabled]="registerForm.invalid">
+                        Регистрация
+                    </button>
+                </div>
             </form>
         </div>
-        
     </div>
 </div>
