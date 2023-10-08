@@ -18,6 +18,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/Authorization/login/login.component';
+import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { LoginComponent } from './components/Authorization/login/login.component
         RegistrationComponent,
         NewAdvertisementComponent,
 		LoginComponent,
+  AdvertisementComponent,
     ],
     imports: [
         BrowserModule,

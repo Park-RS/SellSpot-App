@@ -1,12 +1,11 @@
 <div class="container">
     <div class="ad ad__items">
-        <form action="">
+        <form action="" [formGroup]="newAd">
             <h4>Новое объявление</h4>
             <div class="select">
                 <p>Выберите категорию <span>*</span></p>
                 <p-dropdown
                     [options]="cities"
-                    
                     optionLabel="name"
                     styleClass="ad__select"
                     placeholder="Нажмите, чтобы выбрать"

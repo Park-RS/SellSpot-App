@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { isAuthGuard } from './guards/is-auth.guard';
 
 const routes: Routes = [
     {
@@ -15,25 +16,26 @@ const routes: Routes = [
         loadChildren: () =>
             import('./components/Authorization/login/login.module').then(
                 (m) => m.LoginModule
-            ),	
-			outlet: 'modal',
+            ),
+        outlet: 'modal',
     },
     {
-		title: 'Регистрация',
+        title: 'Регистрация',
         path: 'register',
         loadChildren: () =>
             import(
                 './components/Authorization/registration/registration.module'
             ).then((m) => m.RegistrationModule),
-			outlet: 'modal',
+        outlet: 'modal',
     },
-	{
+    {
         title: 'Новое объявление',
         path: 'new-advertisement',
         loadChildren: () =>
-            import('./components/new-advertisement/new-advertisement.module').then(
-                (m) => m.NewAdvertisementModule
-            ),
+            import(
+                './components/new-advertisement/new-advertisement.module'
+            ).then((m) => m.NewAdvertisementModule),
+        canActivate: [isAuthGuard],
     },
 ];
 

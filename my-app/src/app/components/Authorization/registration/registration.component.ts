@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Auth } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-registration',
@@ -21,7 +22,8 @@ export class RegistrationComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<RegistrationComponent>,
         private _httpClient: HttpClient,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+		private auth:Auth,
     ) {}
     close() {
         this.dialogRef.close();
@@ -33,8 +35,9 @@ export class RegistrationComponent implements OnInit {
                 name: this.registerForm.get('name')?.value,
                 password: this.registerForm.get('password')?.value,
             })
-            .subscribe((response) => {
+            .subscribe((response: any) => {
                 console.log(response);
+				this.auth.setUserName(response.name)
             });
     }
 	get login()

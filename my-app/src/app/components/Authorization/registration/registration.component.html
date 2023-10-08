@@ -31,40 +31,47 @@
                     id=""
                     placeholder="Номер телефона"
                     formControlName="login"
+					
                 />
-                <span
-                    style="color: red"
-                    *ngIf="login && login.invalid && login.touched"
-                    >error</span
-                >
+				<div *ngIf="login && login.invalid && login.touched && login.dirty" style="color: red;">
+					<div *ngIf="login.errors?.['required']">Это поле обязательно к заполнению</div>
+					<div *ngIf="login.errors?.['minlength']">Минимальная длина 8 символов</div>
+					<div *ngIf="login.errors?.['pattern']">Это поле должно содержать только цифры</div>
+				</div>
+				
+                
                 <input
                     class="registration__name"
                     type="text"
-                    name="name"
-                    id=""
+                    id="name"
                     placeholder="Имя"
                     formControlName="name"
+					required
                 />
-                <span
+				<div *ngIf="name && name.invalid && name.touched && name.dirty" style="color: red;">
+					<div *ngIf="name.errors?.['required']">Требуется ввести имя </div>
+					<div *ngIf="name.errors?.['minlength']">Минимальная длина 4 символа</div>
+				</div>
+                <!-- <span
                     style="color: red"
                     *ngIf="name && name.invalid && name.touched"
+					
                     >error</span
-                >
+                > -->
                 <input
                     class="registration__pass"
-                    type="text"
+                    type="password"
                     name="pass"
                     id=""
                     placeholder="Пароль"
                     formControlName="password"
                 />
-                <span
-                    style="color: red"
-                    *ngIf="password && password.invalid && password.touched"
-                    >error</span
-                >
+				<div *ngIf="password && password.invalid && password.touched && password.dirty" style="color: red;">
+					<div *ngIf="password.errors?.['required']">Требуется ввести пароль </div>
+					<div *ngIf="password.errors?.['minlength']">Минимальная длина 6 символов</div>
+				</div>
                 <div class="registration__button">
-                    <button [disabled]="registerForm.invalid">
+                    <button>
                         Регистрация
                     </button>
                 </div>
