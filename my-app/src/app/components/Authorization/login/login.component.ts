@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Auth } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
     selector: 'app-login',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+	cat: string[] = []
     constructor(
         public dialogRef: MatDialogRef<LoginComponent>,
         private matDialog: MatDialog,
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
         private auth: Auth,
         private fb: FormBuilder,
 		private router: Router,
+		private category: CategoriesService,
     ) {}
     formLogin: UntypedFormGroup = new UntypedFormGroup({});
     ngOnInit() {
@@ -26,35 +29,44 @@ export class LoginComponent implements OnInit {
             login: ['', [Validators.required]],
             password: ['', [Validators.required]],
         });
-		console.log(this.auth.getCurrentUser());
+		this.category.getCategories().subscribe((response) =>
+		{
+			this.cat = response;
+			console.log(this.cat);
+			
+		})
+		
+	
+		
+		
+		// console.log(this.auth.getCurrentUser());
+		// const ad = this.auth.getCurrentUser();
+		// console.log(ad);
+		
+		
+		
 		
 	
     }
     close() {
         this.dialogRef.close();
     }
-    // Auth(): void {
-    //     this._httpClient
-    //         .post('http://194.87.237.48:5000/Auth/Login', {
-    //             login: this.formLogin.get('login')?.value,
-    //             password: this.formLogin.get('password')?.value,
-    //         })
-    //         .subscribe((response: any) => {
-    //             console.log(response)
-    // 			localStorage.setItem('token',response)
-    //         })
-    // }
+
     Auth() {
         this.auth
             .login(
                 this.formLogin.get('login')?.value,
                 this.formLogin.get('password')?.value
+				
             )
             .subscribe((response) => {
 				this.router.navigate([''])
 				this.dialogRef.close();
 				
 			});
+			
+			console.log(this.auth.getCurrentUser());
+			
     }
 
     openDialog() {

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header__inner">
                 <div class="header__login">
-                    <button (click)="openDialog()">
+                    <button (click)="openLogin()">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -16,8 +16,8 @@
                             />
                         </svg>
 
-                        <p *ngIf="auth.isAuthorised">Войти</p>
-                        <p *ngIf="auth.isAuthorised">{{ 1 }}</p>
+                        <p *ngIf="!auth.isAuthent()">Войти</p>
+                        <p *ngIf="auth.isAuthent()">Выйти</p>
                     </button>
                 </div>
                 <div class="header__ad">
@@ -45,7 +45,12 @@
                 <a routerLink="">
                     <h3 class="header__title">Доска объявлений</h3>
                 </a>
-                <button class="categories__button">
+                <button [matMenuTriggerFor]="menu" class="categories__button">
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Item 1</button>
+                        <button mat-menu-item>Item 2</button>
+                    </mat-menu>
+
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"

@@ -5,6 +5,7 @@
             <div class="select">
                 <p>Выберите категорию <span>*</span></p>
                 <p-dropdown
+                    formControlName="ad_category"
                     [options]="cities"
                     optionLabel="name"
                     styleClass="ad__select"
@@ -14,6 +15,7 @@
             <div class="ad__name">
                 <p>Название объявления <span>*</span></p>
                 <input
+                    formControlName="ad_name"
                     type="text"
                     pInputText
                     placeholder="Напишите название объявления"
@@ -23,6 +25,7 @@
             <div class="ad__comment">
                 <p>Описание</p>
                 <textarea
+                    formControlName="comment"
                     rows="5"
                     cols="30"
                     pInputTextarea
@@ -32,10 +35,56 @@
             </div>
             <div class="ad__address">
                 <p>Адрес (место проведения сделки) <span>*</span></p>
-                <input type="text" pInputText placeholder="Введите адрес" />
+
+                <input
+                    formControlName="adress"
+                    type="text"
+                    pInputText
+                    placeholder="Введите адрес"
+                    (input)="onTextChange()"
+					class="ad__address-input"
+					
+
+                />
+                <ul class="ad__address-suggest" *ngIf="suggestions.length > 0">
+                    <li  *ngFor="let suggestion of suggestions" (click)="setSuggestion(suggestion)">
+                        {{ suggestion }}
+                    </li>
+                </ul>
             </div>
-            <div class="ad__image">
+            <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                [multiple]="true"
+                [fileLimit]="6"
+                [showUploadButton]="true"
+                accept="image/*"
+                [maxFileSize]="1000000"
+                styleClass="ad__img"
+                chooseLabel="Добавить картинки"
+                uploadLabel="Загрузить"
+                cancelLabel="Отменить"
+                chooseStyleClass="width=100px"
+            >
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">
+                            {{ file.name }} - {{ file.size }} bytes
+                        </li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+            <!-- <div class="ad__image">
+
+                
+
                 <button>
+                    <input
+                        formControlName="ad_image"
+                        type="file"
+                        class="input__file"
+                    />
+
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -55,10 +104,11 @@
                     <p>Добавить картинки</p>
                 </button>
                 <p>Максимум 10 картинок в формате jpeg, png или heic</p>
-            </div>
+            </div> -->
             <div class="ad__price">
                 <p>Цена</p>
                 <p-inputNumber
+                    formControlName="ad_price"
                     inputId="integeronly"
                     placeholder="0 ₽"
                     mode="currency"

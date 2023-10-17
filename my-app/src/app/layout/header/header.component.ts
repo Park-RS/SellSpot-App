@@ -2,32 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/components/Authorization/login/login.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Auth } from 'src/app/services/auth.service';
-import { RegistrationComponent } from 'src/app/components/Authorization/registration/registration.component';
+import {MegaMenuItem,MenuItem} from 'primeng/api';
+import {MenuModule} from 'primeng/menu';
+import { ModalService } from 'src/app/services/modal.service';
+
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-	UsEr: any = ''
-    constructor(private matDialog: MatDialog, private router: Router, public auth: Auth, ) {}
-	ngOnInit(): void {
-		// this.UsEr = this.auth.getUserName();
+export class HeaderComponent {
+	
+	
+	
+    constructor(private matDialog: MatDialog, private router: Router, public auth: Auth, private modal: ModalService) {}
 
-		
+    // public openDialog() {
+    //     this.matDialog.open(LoginComponent, {
+    //         width: '416px',
+    //     });
+    // }
+	openLogin(){
+		this.modal.openDialog();
+
 	}
 
-	
-	
-	
-	
-
-    public openDialog() {
-        this.matDialog.open(LoginComponent, {
-            width: '416px',
-        });
-    }
 }

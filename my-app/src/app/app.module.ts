@@ -1,3 +1,4 @@
+import { GoogleMap } from '@angular/google-maps';
 import { SearchInputComponent } from './components/search/search-input/search-input.component';
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,7 +20,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/Authorization/login/login.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     declarations: [
@@ -29,8 +31,8 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
         SearchInputComponent,
         RegistrationComponent,
         NewAdvertisementComponent,
-		LoginComponent,
-  AdvertisementComponent,
+        LoginComponent,
+        AdvertisementComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,6 +48,9 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
         InputNumberModule,
         DropdownModule,
         HttpClientModule,
+        MatMenuModule,
+        FileUploadModule,
+		
     ],
     providers: [],
     bootstrap: [AppComponent],
