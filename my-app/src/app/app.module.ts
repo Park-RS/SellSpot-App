@@ -1,4 +1,3 @@
-import { GoogleMap } from '@angular/google-maps';
 import { SearchInputComponent } from './components/search/search-input/search-input.component';
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
