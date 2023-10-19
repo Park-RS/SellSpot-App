@@ -6,6 +6,7 @@ import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Auth } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { Category } from '../../interfaces/category';
 
 @Component({
     selector: 'app-login',
@@ -13,15 +14,14 @@ import { CategoriesService } from 'src/app/services/categories.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-	cat: string[] = []
     constructor(
         public dialogRef: MatDialogRef<LoginComponent>,
         private matDialog: MatDialog,
         private _httpClient: HttpClient,
         private auth: Auth,
         private fb: FormBuilder,
-		private router: Router,
-		private category: CategoriesService,
+        private router: Router,
+        private category: CategoriesService
     ) {}
     formLogin: UntypedFormGroup = new UntypedFormGroup({});
     ngOnInit() {
@@ -29,44 +29,31 @@ export class LoginComponent implements OnInit {
             login: ['', [Validators.required]],
             password: ['', [Validators.required]],
         });
-		this.category.getCategories().subscribe((response) =>
-		{
-			this.cat = response;
-			console.log(this.cat);
-			
-		})
-		
-	
-		
-		
-		// console.log(this.auth.getCurrentUser());
-		// const ad = this.auth.getCurrentUser();
-		// console.log(ad);
-		
-		
-		
-		
-	
+        // this.category.getCategories().subscribe((response) =>
+        // {
+        // })
+        // console.log(this.auth.getCurrentUser());
+        // const user = this.auth.getCurrentUser();
+        // console.log(user);
     }
     close() {
         this.dialogRef.close();
     }
 
     Auth() {
-        this.auth
-            .login(
-                this.formLogin.get('login')?.value,
-                this.formLogin.get('password')?.value
-				
-            )
-            .subscribe((response) => {
-				this.router.navigate([''])
-				this.dialogRef.close();
-				
-			});
-			
-			console.log(this.auth.getCurrentUser());
-			
+        if (this.formLogin.valid) {
+            this.auth
+                .login(
+                    this.formLogin.get('login')?.value,
+                    this.formLogin.get('password')?.value
+                )
+                .subscribe(() => {
+                    this.auth.getCurrentUser().subscribe((resp) => {
+                        console.log(resp);
+                        this.dialogRef.close();
+                    });
+                });
+        }
     }
 
     openDialog() {

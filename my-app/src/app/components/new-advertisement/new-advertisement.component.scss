@@ -34,7 +34,11 @@
     @include inputstyle;
     margin-top: 8px;
 }
-
+.ad__select{
+	@include inputstyle;
+    margin-top: 8px;
+	border: 1px solid rgba(121, 119, 119, 0.575);
+}
 .ad__name {
     margin-top: 16px;
     & input {

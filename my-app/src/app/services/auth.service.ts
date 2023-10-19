@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { User } from './../components/interfaces/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
-import { User } from '../components/interfaces/user';
 
+const USER_KEY = 'auth-user';
 const TOKEN_KEY = 'AuthToken';
 @Injectable({
     providedIn: 'root',
@@ -14,9 +15,9 @@ export class Auth {
 
     constructor(private http: HttpClient) {}
 
-    login(login: string, password: string) {
+    login(login: string, password: string): Observable<any> {
         return this.http
-            .post('http://194.87.237.48:5000/Auth/Login', {
+            .post<any>('http://194.87.237.48:5000/Auth/Login', {
                 login,
                 password,
             })
@@ -46,44 +47,61 @@ export class Auth {
         }
     }
     // getCurrentUser(): any {
-	// 	const user = sessionStorage.getItem('token')
-		
-	// 	if (user) {
-	// 		return this.http
+    // 	const user = sessionStorage.getItem('token')
+
+    // 	if (user) {
+    // 		return this.http
     //         .get('http://194.87.237.48:5000/Users/current').pipe(
-	// 			switchMap((user) => {
-	// 				const name = user.name || '';
-	// 				localStorage.setItem('user-name', JSON.stringify(name));
-	// 				this.currUsernameSource.next(name);
-	// 				return of(user);
-	// 			  }));
-			
+    // 			switchMap((user) => {
+    // 				const name = user.name || '';
+    // 				localStorage.setItem('user-name', JSON.stringify(name));
+    // 				this.currUsernameSource.next(name);
+    // 				return of(user);
+    // 			  }));
+
     //         // .subscribe((response) => {
-	// 		// 	return response
-                
+    // 		// 	return response
+
     //         // });
-	// 	}
-		
-        
+    // 	}
+
     // }
-	
-	private currUsernameSource = new BehaviorSubject<string>('');
-	currUsername = this.currUsernameSource.asObservable();
-	getCurrentUser(): Observable<User>{
-		return this.http.get<User>('http://194.87.237.48:5000/Users/current').pipe(
-		  switchMap((user) => {
-		  const name = user.name || '';
-		  localStorage.setItem('user-name', JSON.stringify(name));
-		  this.currUsernameSource.next(name);
-		  return of(user);
-		}));
-	  }
-	
-	
+
+    // private currUsernameSource = new BehaviorSubject<string>('');
+    // currUsername = this.currUsernameSource.asObservable();
+    getCurrentUser(): Observable<User> {
+        return this.http.get<User>('http://194.87.237.48:5000/Users/current', {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+				'Authorization': `${sessionStorage.getItem("token")}`
+            }),
+        });
+    }
+    // .pipe(
+    //     switchMap((user) => {
+    //         const name = user.name || '';
+    //         sessionStorage.setItem('user-name', name);
+    //         this.currUsernameSource.next(name);
+    //         return of(user);
+    //     })
+    // );
     public saveToken(token: string) {
-        this.token = token
+        this.token = token;
     }
     public getToken() {
-        return this.token
+        return this.token;
+    }
+    public saveUser(user: any): void {
+        window.sessionStorage.removeItem(USER_KEY);
+        window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    }
+
+    public getUser(): any {
+        const user = window.sessionStorage.getItem(USER_KEY);
+        if (user) {
+            return JSON.parse(user);
+        }
+
+        return {};
     }
 }

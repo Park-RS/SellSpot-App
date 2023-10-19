@@ -6,12 +6,32 @@
                 <p>Выберите категорию <span>*</span></p>
                 <p-dropdown
                     formControlName="ad_category"
-                    [options]="cities"
-                    optionLabel="name"
                     styleClass="ad__select"
                     placeholder="Нажмите, чтобы выбрать"
-                ></p-dropdown>
+                    [options]="categories"
+                    optionLabel="name"
+                >
+                </p-dropdown>
+
+                <p-dropdown
+                    styleClass="ad__select"
+                    placeholder="Нажмите, чтобы выбрать"
+                    [options]="subcategories"
+                    optionLabel="name"
+                >
+                </p-dropdown>
+
+                <select class="ad__select" name="" id="">
+                    <option value="">Выберите категорию</option>
+                    <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                    >
+                        {{ category.name }}
+                    </option>
+                </select>
             </div>
+
             <div class="ad__name">
                 <p>Название объявления <span>*</span></p>
                 <input
@@ -42,12 +62,13 @@
                     pInputText
                     placeholder="Введите адрес"
                     (input)="onTextChange()"
-					class="ad__address-input"
-					
-
+                    class="ad__address-input"
                 />
                 <ul class="ad__address-suggest" *ngIf="suggestions.length > 0">
-                    <li  *ngFor="let suggestion of suggestions" (click)="setSuggestion(suggestion)">
+                    <li
+                        *ngFor="let suggestion of suggestions"
+                        (click)="setSuggestion(suggestion)"
+                    >
                         {{ suggestion }}
                     </li>
                 </ul>
