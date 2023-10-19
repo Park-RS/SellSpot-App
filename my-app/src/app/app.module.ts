@@ -21,6 +21,9 @@ import { LoginComponent } from './components/Authorization/login/login.component
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { FileUploadModule } from 'primeng/fileupload';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+
+
 
 @NgModule({
     declarations: [
@@ -32,6 +35,8 @@ import { FileUploadModule } from 'primeng/fileupload';
         NewAdvertisementComponent,
         LoginComponent,
         AdvertisementComponent,
+        UserSettingsComponent,
+
     ],
     imports: [
         BrowserModule,

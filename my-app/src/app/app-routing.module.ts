@@ -37,6 +37,15 @@ const routes: Routes = [
             ).then((m) => m.NewAdvertisementModule),
         canActivate: [isAuthGuard],
     },
+    {
+        title: 'Настройки',
+        path: 'settings',
+        loadChildren: () =>
+            import(
+                './components/user-settings/user-settings.module'
+            ).then((m) => m.UserSettingsModule),
+        canActivate: [isAuthGuard],
+    },
 ];
 
 @NgModule({
