@@ -10,6 +10,9 @@ import { Auth } from 'src/app/services/auth.service';
     styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
+	focused__login: boolean = false;
+	focused__name: boolean = false;
+	focused__pass: boolean = false;
     registerForm: UntypedFormGroup = new UntypedFormGroup({});
     ngOnInit(): void {
         this.registerForm = this.fb.group({

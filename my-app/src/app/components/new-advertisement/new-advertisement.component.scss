@@ -140,6 +140,7 @@
 
 .ad__address-suggest{
 	position: absolute;
+	z-index: 3;
 
 	& li {
 		width: 832px;

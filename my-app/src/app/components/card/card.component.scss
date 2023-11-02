@@ -1,0 +1,48 @@
+.card {
+}
+.card__inner {
+  margin-top: 23px;
+  
+
+}
+.card__inner:hover {
+  & img {
+    transform: scale(1.1);
+  }
+  & .card__title {
+    color: #0ea5e9;
+	overflow:hidden;
+  }
+}
+
+.card__block {
+  overflow: hidden;
+  border-radius: 4px;
+}
+.card__img {
+  transition: transform 0.3s ease;
+}
+.card__title {
+  color: var(--light-text-primary-text, #3b82f6);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-top: 9px;
+  text-align: left;
+}
+.card__price {
+  color: var(--light-text-default-text, #1e293b);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.card__address {
+  color: var(--light-text-secondary-text, #64748b);
+  line-height: 20px;
+  
+}
+.card__date {
+  color: var(--light-text-secondary-text, #64748b);
+  line-height: 20px;
+  
+}

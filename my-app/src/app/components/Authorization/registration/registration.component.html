@@ -31,13 +31,16 @@
                     id=""
                     placeholder="Номер телефона"
                     formControlName="login"
+					(focus)="focused__login=true"
+					(blur)="focused__login= false"
+					autocomplete="off"
 					
                 />
-				<div *ngIf="login && login.invalid && login.touched && login.dirty" style="color: red;">
-					<div *ngIf="login.errors?.['required']">Это поле обязательно к заполнению</div>
-					<div *ngIf="login.errors?.['minlength']">Минимальная длина 8 символов</div>
-					<div *ngIf="login.errors?.['pattern']">Это поле должно содержать только цифры</div>
-				</div>
+				<ul *ngIf="login && login.invalid && login.touched && login.dirty && focused__login" class="registration__phone-invalid">
+					<li *ngIf="login.errors?.['required']">Это поле обязательно к заполнению</li>
+					<li *ngIf="login.errors?.['minlength']">Минимальная длина 8 символов</li>
+					<li *ngIf="login.errors?.['pattern']">Это поле должно содержать только цифры</li>
+				</ul>
 				
                 
                 <input
@@ -47,17 +50,14 @@
                     placeholder="Имя"
                     formControlName="name"
 					required
+					autocomplete="off"
+					(focus)="focused__name=true"
+					(blur)="focused__name= false"
                 />
-				<div *ngIf="name && name.invalid && name.touched && name.dirty" style="color: red;">
-					<div *ngIf="name.errors?.['required']">Требуется ввести имя </div>
-					<div *ngIf="name.errors?.['minlength']">Минимальная длина 4 символа</div>
-				</div>
-                <!-- <span
-                    style="color: red"
-                    *ngIf="name && name.invalid && name.touched"
-					
-                    >error</span
-                > -->
+				<ul *ngIf="name && name.invalid && name.touched && name.dirty && focused__name" class="registration__name-invalid">
+					<li *ngIf="name.errors?.['required']">Требуется ввести имя </li>
+					<li *ngIf="name.errors?.['minlength']">Минимальная длина 4 символа</li>
+				</ul>
                 <input
                     class="registration__pass"
                     type="password"
@@ -65,11 +65,15 @@
                     id=""
                     placeholder="Пароль"
                     formControlName="password"
+					autocomplete="off"
+					(focus)="focused__pass=true"
+					(blur)="focused__pass= false"
                 />
-				<div *ngIf="password && password.invalid && password.touched && password.dirty" style="color: red;">
-					<div *ngIf="password.errors?.['required']">Требуется ввести пароль </div>
-					<div *ngIf="password.errors?.['minlength']">Минимальная длина 6 символов</div>
-				</div>
+				
+				<ul *ngIf="password && password.invalid && password.touched && password.dirty && focused__pass" class="registration__password-invalid">
+					<li *ngIf="password.errors?.['required']">Требуется ввести пароль </li>
+					<li *ngIf="password.errors?.['minlength']">Минимальная длина 6 символов</li>
+				</ul>
                 <div class="registration__button">
                     <button>
                         Регистрация

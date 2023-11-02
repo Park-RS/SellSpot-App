@@ -46,45 +46,14 @@ export class Auth {
             return false;
         }
     }
-    // getCurrentUser(): any {
-    // 	const user = sessionStorage.getItem('token')
-
-    // 	if (user) {
-    // 		return this.http
-    //         .get('http://194.87.237.48:5000/Users/current').pipe(
-    // 			switchMap((user) => {
-    // 				const name = user.name || '';
-    // 				localStorage.setItem('user-name', JSON.stringify(name));
-    // 				this.currUsernameSource.next(name);
-    // 				return of(user);
-    // 			  }));
-
-    //         // .subscribe((response) => {
-    // 		// 	return response
-
-    //         // });
-    // 	}
-
-    // }
-
-    // private currUsernameSource = new BehaviorSubject<string>('');
-    // currUsername = this.currUsernameSource.asObservable();
     getCurrentUser(): Observable<User> {
         return this.http.get<User>('http://194.87.237.48:5000/Users/current', {
             headers: new HttpHeaders({
                 'Access-Control-Allow-Origin': '*',
-				'Authorization': `${sessionStorage.getItem("token")}`
+                Authorization: `${sessionStorage.getItem('token')}`,
             }),
         });
     }
-    // .pipe(
-    //     switchMap((user) => {
-    //         const name = user.name || '';
-    //         sessionStorage.setItem('user-name', name);
-    //         this.currUsernameSource.next(name);
-    //         return of(user);
-    //     })
-    // );
     public saveToken(token: string) {
         this.token = token;
     }

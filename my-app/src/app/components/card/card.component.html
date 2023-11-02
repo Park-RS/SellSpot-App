@@ -1,0 +1,12 @@
+<a routerLink="advertisement" href="card__link">
+    <div class="card__inner">
+        <div class="card__block">
+            <img src="./assets/img/guitar.png" alt="" class="card__img" />
+        </div>
+        <h6 class="card__title">{{product.name | slice:0:27}}</h6>
+        <h6 class="card__price">{{product.cost  | number: '1.0-0' }} ₽</h6>
+        <div class="card__address">{{product.location | slice:0:39 }}</div>
+        <div class="card__date">{{product.createdAt | date: 'dd/MM/yyyy'}}</div>
+    </div>
+</a>
+

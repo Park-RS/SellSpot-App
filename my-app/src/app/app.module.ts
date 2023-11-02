@@ -22,8 +22,13 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
 import { MatMenuModule } from '@angular/material/menu';
 import { FileUploadModule } from 'primeng/fileupload';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
-
-
+import { PasswordModule } from 'primeng/password';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { CardComponent } from './components/card/card.component';
+import { CategoriesComponent } from './layout/header/components/categories/categories.component';
+import { BulletinBoardComponent } from './components/bulletin-board/bulletin-board.component';
+import { UserAdvertisementsComponent } from './components/user-advertisements/user-advertisements.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +41,10 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
         LoginComponent,
         AdvertisementComponent,
         UserSettingsComponent,
-
+        CardComponent,
+        CategoriesComponent,
+		BulletinBoardComponent,
+  UserAdvertisementsComponent,
     ],
     imports: [
         BrowserModule,
@@ -54,7 +62,9 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
         HttpClientModule,
         MatMenuModule,
         FileUploadModule,
-		
+        PasswordModule,
+        InputMaskModule,
+		CascadeSelectModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

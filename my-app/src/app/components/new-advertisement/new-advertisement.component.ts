@@ -5,6 +5,7 @@ import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Category } from '../interfaces/category';
 import { Observable, map, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 interface City {
     name: string;
@@ -18,16 +19,28 @@ export class NewAdvertisementComponent implements OnInit {
     cat!: Array<Category>;
     selectedParentCategory!: Category;
     public categories!: Category[];
+    public main_categories!: Category[];
+	public categorySelected!: string; 
+    public subcategoriies!: Category[];
+	public subCategorySelected!: string;
+	public undersubcategoriies!:Category[];
+	public underSubCategorySelected!: string;
+    public categ: any[] | undefined;
+    public secondCatehories!: Category[];
     subcategories: string[] = [];
     selectedCategory!: string;
     selectedSubcategory!: string;
+    defaultParentCategoryId: any = '00000000-0000-0000-0000-000000000000';
+	defaultCategoryName: any = 'Выберите категорию'
+    value?: any;
 
     uploadedFiles: any[] = [];
     suggestions: string[] = [];
     constructor(
         private fb: FormBuilder,
         private searchService: SearchService,
-        public category: CategoriesService
+        public category: CategoriesService,
+        private http: HttpClient
     ) {}
     newAd: UntypedFormGroup = new UntypedFormGroup({});
     ngOnInit(): void {
@@ -35,14 +48,42 @@ export class NewAdvertisementComponent implements OnInit {
             ad_category: ['', [Validators.required]],
             ad_name: ['', [Validators.required]],
             comment: ['', [Validators.required]],
+            ad_phone: ['', [Validators.required]],
             adress: ['', [Validators.required]],
             ad_image: ['', [Validators.required]],
             ad_price: ['', [Validators.required]],
         });
         this.category.getCategories().subscribe((response) => {
             this.categories = response.childs;
+            this.main_categories = this.categories;
+            // console.log(this.value);
+
+            // this.categ = this.categories.filter((category) => category.parentId == this.defaultParentCategoryId && category.name !== 'Anything' && category.name !== 'Default');
+
+            // console.log(this.categ);
+            // this.secondCatehories = this.categories.filter((category)=> category.id)
+            // this.categ = response.childs;
+            // console.log(this.categ);
         });
     }
+    onSelectedMain(category: any) {
+		
+		this.undersubcategoriies = []
+        this.category.getAllWithIdCategories(category).subscribe((data) => {
+            this.subcategoriies = data.childs;
+            console.log(this.subcategoriies);
+        });
+    }
+	onSelectedSub(category:any)
+	{
+		this.category.getAllWithIdCategories(category).subscribe((resp)=>
+		{
+			this.undersubcategoriies = resp.childs;
+			console.log(this.undersubcategoriies);
+			
+		})
+	}
+	onSelectedUnderSub(category:any){}
 
     onTextChange() {
         const text = this.newAd.get('adress')?.value;
@@ -82,6 +123,28 @@ export class NewAdvertisementComponent implements OnInit {
             })
         );
     }
+    // createAdvert() {
+    //     this.http
+    //         .post('http://194.87.237.48:5000/Advert', {
+    //             categoryId: this.newAd.get('ad_category')?.value,
+    //             name: this.newAd.get('ad_name')?.value,
+    //             location: this.newAd.get('adress')?.value,
+    //             description: this.newAd.get('comment')?.value,
+    //             images: this.newAd.get('ad_image')?.value,
+    //             cost: this.newAd.get('ad_price')?.value,
+    //         })
+    //         .subscribe((response) => {
+    //             console.log(response);
+    //         });
+    // }
+    createAdvert() {
+        const formdata = new FormData();
+        formdata.append('Name', this.newAd.value.ad_name);
+        formdata.append('CategoryId', this.newAd.value.ad_category);
+        formdata.append('Location', this.newAd.value.adress);
+        formdata.append('Phone', this.newAd.value.ad_phone);
+        formdata.append('Cost', this.newAd.value.ad_price);
+    }
 
     //   selectParentCategory(event) {
     // 	const categoryId = event.value;
@@ -93,26 +156,6 @@ export class NewAdvertisementComponent implements OnInit {
 
     selectCategory(value: string): Array<Category> {
         return (this.cat = this.cat.filter((obj) => obj.parentId == value));
-
-        // this.category.getCategories().subscribe((response) =>
-        // {
-        // 	console.log(response);
-
-        // 	this.cat = this.cat.filter((data) =>
-        // 	{
-        // 		console.log(data == value);
-
-        // 	})
-        // })
-        // this.category.getCategories().subscribe((response) =>
-        // {
-
-        // 	return this.cat = this.cat.filter((data =>{
-        // 		console.log(data.parentId);
-
-        // 	}))
-
-        // })
     }
     // onUpload(event) {
     //     for(let file of event.files) {
@@ -122,6 +165,4 @@ export class NewAdvertisementComponent implements OnInit {
 
     // countries: any[] | undefined;
     // selectedCity: any;
-
-    value1: number | undefined;
 }

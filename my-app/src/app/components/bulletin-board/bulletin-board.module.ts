@@ -3,9 +3,14 @@ import { CommonModule } from '@angular/common';
 import { BulletinBoardComponent } from './bulletin-board.component';
 import { BulletinRoutingModule } from './bulletin-routing.module';
 
+// @NgModule({
+//     declarations: [BulletinBoardComponent],
+//     imports: [CommonModule, BulletinRoutingModule],
+//     exports: [BulletinBoardComponent],
+// })
 @NgModule({
-    declarations: [BulletinBoardComponent],
+    declarations: [],
     imports: [CommonModule, BulletinRoutingModule],
-    exports: [BulletinBoardComponent],
+    exports: [],
 })
 export class BulletinBoardModule {}

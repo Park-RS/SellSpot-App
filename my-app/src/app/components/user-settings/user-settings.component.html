@@ -1,1 +1,76 @@
-<p>user-settings works!</p>
+<div class="container">
+    <div class="settings">
+        <div class="settings__wrapper">
+            <h4 class="settings__title">Настройки</h4>
+            <form [formGroup]="userSettingsForm" class="settings__form-1">
+                <div class="settings__box">
+                    <div class="settings__name">
+                        <div class="inputname">Имя</div>
+                        <input
+                            class="settings__name-input"
+                            type="text"
+                            pInputText
+                            formControlName="user_name"
+                        />
+                    </div>
+                    <div class="settings__phone">
+                        <div class="inputname">Номер телефона</div>
+                        <p-inputMask
+                            formControlName="user_phone"
+                            styleClass="p-inputMask"
+                            mask="+7 (999) 999-99-99"
+                            placeholder="+7 (999) 999-99-99"
+                            [style]="{ width: '416px' }"
+                        ></p-inputMask>
+                    </div>
+                </div>
+                <div class="settings__address">
+                    <div class="inputname">Адрес</div>
+                    <input
+                        type="text"
+                        placeholder="Не указан"
+                        pInputText
+                        formControlName="user_address"
+                    />
+                </div>
+                <button
+                    label="Сохранить"
+                    class="settings-button-1"
+                    pButton
+                ></button>
+            </form>
+            <h4 class="settings__changepass">Смена пароля</h4>
+            <form [formGroup]="userChangePass" class="settings__form-2" action="">
+                <div class="settings__currentpass">
+                    <div class="inputname">Текущий пароль</div>
+                    <p-password
+                        class="w-full"
+                        styleClass="p-password"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        [inputStyle]="{ width: '100%' }"
+                        placeholder="Введите текущий пароль"
+						formControlName="user_currentPass"
+                    ></p-password>
+                </div>
+                <div class="settings__newpass">
+                    <div class="inputname">Новый пароль</div>
+                    <p-password
+                        class="w-full"
+                        styleClass="p-password"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        [inputStyle]="{ width: '100%' }"
+                        placeholder="Введите новый пароль"
+						formControlName="user_newPass"
+                    ></p-password>
+                </div>
+                <button
+                    label="Изменить пароль"
+                    class="settings-button-2"
+                    pButton
+                ></button>
+            </form>
+        </div>
+    </div>
+</div>

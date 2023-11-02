@@ -84,23 +84,20 @@ app-root {
     font-size: 14px;
 }
 
-@media screen and (max-width: 1325px) {
+@media screen and (max-width: 1342px) {
     .item__title {
         text-align: center;
     }
     .header__title {
         text-align: center;
     }
+	.categories__button{
+		min-height: 72px;
+		max-height: 72px;
+		
+	}
 }
 
-@media screen and (max-width: 1325px) {
-    .item__title {
-        text-align: center;
-    }
-    .header__title {
-        text-align: center;
-    }
-}
 @media screen and (max-width: 995px) {
 }
 @media screen and (max-width: 720px) {

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="ad ad__items">
-        <form action="" [formGroup]="newAd">
+        <form action="" [formGroup]="newAd" (ngSubmit)="createAdvert()">
             <h4>Новое объявление</h4>
             <div class="select">
                 <p>Выберите категорию <span>*</span></p>
-                <p-dropdown
+                <!-- <p-dropdown
                     formControlName="ad_category"
                     styleClass="ad__select"
                     placeholder="Нажмите, чтобы выбрать"
@@ -12,6 +12,23 @@
                     optionLabel="name"
                 >
                 </p-dropdown>
+                <select class="ad__select" name="" id="">
+                    <option value="">Выберите категорию</option>
+                    <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                    >
+                        {{ category.name }}
+                    </option>
+                </select>
+                <p-cascadeSelect
+                    formControlName="ad_category"
+                    [options]=""
+                    optionLabel="name"
+                    optionGroupLabel=""
+                    optionGroupChildren=""
+                    [style]="{ minWidth: '14rem' }"
+                ></p-cascadeSelect>
 
                 <p-dropdown
                     styleClass="ad__select"
@@ -24,10 +41,62 @@
                 <select class="ad__select" name="" id="">
                     <option value="">Выберите категорию</option>
                     <option
-                        *ngFor="let category of categories"
+                        *ngFor="let category of main_categories"
                         [value]="category.id"
                     >
                         {{ category.name }}
+                    </option>
+                </select> -->
+
+                <select
+                    class="ad__select"
+					
+                    name=""
+                    id=""
+                    [(ngModel)]="categorySelected"
+                    [ngModelOptions]="{ standalone: true }"
+                    (ngModelChange)="onSelectedMain($event)"
+					
+                >
+                    <option value="" selected value="undefined">{{defaultCategoryName}}</option>
+                    <option
+					
+                        *ngFor="let category of main_categories"
+                        [value]="category.id"
+                    >
+                        {{ category.name }}
+                    </option>
+                </select>
+                <select
+                    class="ad__select"
+                    name=""
+                    id=""
+                    [(ngModel)]="subCategorySelected"
+                    [ngModelOptions]="{ standalone: true }"
+                    (ngModelChange)="onSelectedSub($event)"
+                >
+                    <option value="" selected value="undefined">Выберите категорию</option>
+                    <option
+                        *ngFor="let subcategory of subcategoriies"
+                        [value]="subcategory.id"
+                    >
+                        {{ subcategory.name }}
+                    </option>
+                </select>
+                <select
+                    class="ad__select"
+                    name=""
+                    id=""
+                    [(ngModel)]="underSubCategorySelected"
+                    [ngModelOptions]="{ standalone: true }"
+					(ngModelChange)="onSelectedUnderSub($event)"
+                >
+                    <option value="" selected value="undefined">Выберите категорию</option>
+                    <option
+                        *ngFor="let undersubcategory of undersubcategoriies"
+                        [value]="undersubcategory.id"
+                    >
+                        {{ undersubcategory.name }}
                     </option>
                 </select>
             </div>
@@ -52,6 +121,16 @@
                     [autoResize]="true"
                     placeholder="Расскажите подробнее о товаре или услуге"
                 ></textarea>
+            </div>
+            <div class="ad__phone">
+                <p>Номер телефона</p>
+                <p-inputMask
+                    formControlName="ad_phone"
+                    styleClass="p-inputMask"
+                    mask="+7 (999) 999-99-99"
+                    placeholder="+7 (999) 999-99-99"
+                    [style]="{ height: '48px' }"
+                ></p-inputMask>
             </div>
             <div class="ad__address">
                 <p>Адрес (место проведения сделки) <span>*</span></p>
@@ -132,8 +211,6 @@
                     formControlName="ad_price"
                     inputId="integeronly"
                     placeholder="0 ₽"
-                    mode="currency"
-                    currency="RUB"
                     [style]="{ width: '305px' }"
                     [style]="{ height: '40px' }"
                 >
