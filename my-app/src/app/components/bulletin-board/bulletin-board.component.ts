@@ -10,10 +10,15 @@ import { Advert } from '../interfaces/advert';
 export class BulletinBoardComponent implements OnInit {
     public link!: string;
     public product!: Array<Advert>;
+	public image!: any[];
     constructor(private advertService: AdvertisementsService) {}
     ngOnInit(): void {
         this.advertService.getAdvert('').subscribe((data) => {
             this.product = data;
+			
         });
+		
     }
+	
+
 }

@@ -16,10 +16,14 @@
 }
 
 .card__block {
+	width:306px;
+	height: 240px;
   overflow: hidden;
   border-radius: 4px;
 }
 .card__img {
+	width:306px;
+	height: 240px;
   transition: transform 0.3s ease;
 }
 .card__title {

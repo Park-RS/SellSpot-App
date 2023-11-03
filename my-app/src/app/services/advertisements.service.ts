@@ -14,4 +14,8 @@ export class AdvertisementsService {
 		search: value,
 	})
   }
+//   getImages(id: string):Observable<any[]>{
+// 	return this.http.post<any[]>(`http://194.87.237.48:5000/Advert/${id}`)
+
+//   }
 }

@@ -1,7 +1,7 @@
 <a routerLink="advertisement" href="card__link">
     <div class="card__inner">
         <div class="card__block">
-            <img src="./assets/img/guitar.png" alt="" class="card__img" />
+            <img [src]="imgSrc(product.imagesIds[0])" alt="photo item" class="card__img" />
         </div>
         <h6 class="card__title">{{product.name | slice:0:27}}</h6>
         <h6 class="card__price">{{product.cost  | number: '1.0-0' }} ₽</h6>

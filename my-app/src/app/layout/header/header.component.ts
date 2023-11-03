@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/components/interfaces/category';
 import { Auth } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { Observable } from 'rxjs';
-import { AdvertisementsService } from 'src/app/services/advertisements.service';
 
 @Component({
     selector: 'app-header',
@@ -13,6 +10,7 @@ import { AdvertisementsService } from 'src/app/services/advertisements.service';
 })
 export class HeaderComponent implements OnInit {
     isActive: boolean = false;
+	
 
     userName: any = this.auth.getCurrentUser().subscribe((response) => {
         this.userName = response.name;
@@ -23,7 +21,6 @@ export class HeaderComponent implements OnInit {
         public auth: Auth,
         private modal: ModalService,
         public categoriesService: CategoriesService,
-		private advertService: AdvertisementsService,
     ) {}
     ngOnInit(): void {
 
