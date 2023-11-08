@@ -1,1 +1,10 @@
-<p>search-input works!</p>
+<div class="container">
+	<div class="search" >
+		<div class="search__title">Результаты по запросу: {{query}}</div>
+		<div class="search__row">
+			<app-card *ngFor="let product of product" [product]="product"></app-card>
+		</div>
+	</div>
+
+</div>
+

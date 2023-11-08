@@ -57,11 +57,20 @@ const routes: Routes = [
     },
 	{
         title: 'Объявление',
-        path: 'advertisement',
+        path: 'product/:productId',
         loadChildren: () =>
             import(
                 './components/advertisement/advertisement.module'
             ).then((m) => m.AdvertisementModule),
+        
+    },
+	{
+        title: 'Поиск',
+        path: 'search/:query',
+        loadChildren: () =>
+            import(
+                './components/search/search-input/search-input.module'
+            ).then((m) => m.SearchInputModule),
         
     },
 ];

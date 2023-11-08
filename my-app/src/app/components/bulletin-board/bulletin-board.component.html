@@ -1,11 +1,13 @@
 <main>
-	
     <div class="item">
         <div class="container">
             <h4 class="item__title">Рекомендации для вас</h4>
             <ul class="item__row">
-				<app-card *ngFor="let product of product" [product]="product"></app-card>
-     
+                <app-card
+                    *ngFor="let product of product"
+                    [product]="product"
+                ></app-card>
+
                 <!-- <li class="card">
                     <a href="card__link">
                         <div class="card__inner">
@@ -30,4 +32,3 @@
         </div>
     </div>
 </main>
-

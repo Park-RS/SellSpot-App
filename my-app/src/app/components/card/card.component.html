@@ -1,6 +1,6 @@
-<a routerLink="advertisement" href="card__link">
+<a routerLink="/product/{{product.id}}">
     <div class="card__inner">
-        <div class="card__block">
+        <div  class="card__block">
             <img [src]="imgSrc(product.imagesIds[0])" alt="photo item" class="card__img" />
         </div>
         <h6 class="card__title">{{product.name | slice:0:27}}</h6>

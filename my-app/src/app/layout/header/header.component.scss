@@ -205,3 +205,24 @@ button {
         margin-right: 6px;
     }
 }
+
+.ad__address-suggest{
+	margin-top: 36px;
+	position: absolute;
+	z-index: 3;
+
+	& li {
+		
+		width: 732.72px;
+		background-color: #fff;
+		z-index: 3;
+		position: relative;
+		padding: 12px 8px;
+		font-size: 14px;
+		border: 1px solid rgba(0, 0, 0, 0.384);
+		border-radius: 2px;
+		cursor:pointer;
+		font-family: "Inter";
+	}
+	
+}

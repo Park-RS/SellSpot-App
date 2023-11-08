@@ -1,0 +1,13 @@
+.search__row {
+    display: flex;
+    justify-content: start;
+    row-gap: 9px;
+    column-gap: 24px;
+    flex-wrap: wrap;
+}
+.search__title{
+	margin: 32px 0px 0px 1px;
+	color: var(--light-text-default-text, #1e293b);
+	font-size: 24px;
+	font-weight: 600;
+}

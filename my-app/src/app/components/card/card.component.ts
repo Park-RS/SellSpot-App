@@ -9,7 +9,7 @@ import { Advert } from '../interfaces/advert';
 })
 export class CardComponent {
 	@Input() product!: Advert
-    public link!: string;
+   
 
 	
     constructor() {}

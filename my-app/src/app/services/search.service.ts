@@ -31,4 +31,7 @@ export class SearchService {
             }
         );
     }
+	searchById(id:string):Observable<any>{
+		return this.http.get<any>(`http://194.87.237.48:5000/Advert/${id}`)
+	}
 }
