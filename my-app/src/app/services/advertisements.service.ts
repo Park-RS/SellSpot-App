@@ -17,7 +17,7 @@ export class AdvertisementsService {
         );
     }
     getImages(id: string): Observable<any[]> {
-        return this.http.get<any[]>(`http://194.87.237.48:5000/Advert/${id}`);
+        return this.http.get<any[]>(`http://194.87.237.48:5000/Images/${id}`);
     }
     CreateAd(formdata: FormData): Observable<Advert> {
         return this.http.post<any>(

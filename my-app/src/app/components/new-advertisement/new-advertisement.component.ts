@@ -8,40 +8,33 @@ import { Observable, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FileRemoveEvent, FileSelectEvent } from 'primeng/fileupload';
 import { AdvertisementsService } from 'src/app/services/advertisements.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './new-advertisement.component.html',
     styleUrls: ['./new-advertisement.component.scss'],
 })
 export class NewAdvertisementComponent implements OnInit {
-    cat!: Array<Category>;
-    selectedParentCategory!: Category;
     public categories!: Category[];
     public main_categories!: Category[];
-    public categorySelected!: string;
     public subcategoriies!: Category[];
-    public subCategorySelected!: any;
     public undersubcategoriies!: Category[];
-    public underSubCategorySelected!: string;
-    public categ: any[] | undefined;
-    public secondCatehories!: Category[];
     subcategories: string[] = [];
-    selectedCategory!: string;
-    selectedSubcategory!: string;
     defaultParentCategoryId: any = '00000000-0000-0000-0000-000000000000';
     defaultCategoryName: any = 'Выберите категорию';
-    
-	FilesArray: { url: string, file: File, size: number, name: string }[]=[];
+
+    FilesArray: { url: string; file: File; size: number; name: string }[] = [];
     suggestions: string[] = [];
     constructor(
         private fb: FormBuilder,
         private searchService: SearchService,
         public category: CategoriesService,
         private http: HttpClient,
-        private advertService: AdvertisementsService
+        private advertService: AdvertisementsService,
+        private router: Router
     ) {
-		this._CreateAdvert();
-	}
+        this._CreateAdvert();
+    }
     newAd: UntypedFormGroup = new UntypedFormGroup({});
     ngOnInit(): void {
         this.category.getCategories().subscribe((response) => {
@@ -52,8 +45,8 @@ export class NewAdvertisementComponent implements OnInit {
             console.log(this.newAd.value.secondCategorySelect);
         }
     }
-	_CreateAdvert(){
-		this.newAd = this.fb.group({
+    _CreateAdvert() {
+        this.newAd = this.fb.group({
             firstCategorySelect: ['', [Validators.required]],
             secondCategorySelect: ['', [Validators.required]],
             thirdCategorySelect: '',
@@ -64,13 +57,13 @@ export class NewAdvertisementComponent implements OnInit {
             ad_image: this.FilesArray,
             ad_price: ['', [Validators.required]],
         });
-	}
+    }
     onChange(event: Event) {
         const category = (event.target as HTMLSelectElement).value;
         this.onSelectedMain(category);
         this.newAd.get('firstCategorySelect')?.setValue(category);
         console.log(this.newAd.get('firstCategorySelect')?.value);
-		console.log(this.newAd.get('adress')?.value);
+        console.log(this.newAd.get('adress')?.value);
     }
     onSubChange(event: Event) {
         const subCategory = (event.target as HTMLSelectElement).value;
@@ -97,20 +90,39 @@ export class NewAdvertisementComponent implements OnInit {
         });
     }
     onFileSelect(event: any) {
-		if (event.target.files && event.target.files[0]) {
-			for (const file of event.target.files) {
-			  const reader = new FileReader();
-			  reader.onload = (e: any) => {
-				if(this.FilesArray.length < 10) {
-				  this.FilesArray.push({ url: e.target.result, file, size: file.size / 1024, name: file.name });
-				} else {
-				  console.log('more then 10 imgs prohibited')
-				}
-			  };
-			  reader.readAsDataURL(file);
-			}
-		  }
-		  	  
+        if (event.target.files && event.target.files[0]) {
+            for (const file of event.target.files) {
+                const reader = new FileReader();
+                reader.onload = (e: any) => {
+                    if (this.FilesArray.length < 10) {
+                        this.FilesArray.push({
+                            url: e.target.result,
+                            file,
+                            size: file.size / 1024,
+                            name: file.name,
+                        });
+                    } else {
+                        console.log('more then 10 imgs prohibited');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }// https://www.youtube.com/watch?v=U_mMkkcd8GE
+        //   this.newAd.patchValue({
+        // 	ad_image: this.FilesArray
+        //   });
+        for (let file of this.FilesArray) {
+            console.log('Images', file.file);
+        }
+
+        //   if (files && files!.length>0) {
+        // 	for(let i = 0; i < this.FilesArray.length; i++) {
+        // 	  console.log('Images', files[i]);
+        // 	}
+        // }
+    }
+    deleteImage(i: any) {
+        this.FilesArray.splice(i, 1);
     }
     onSelectedUnderSub(category: any) {}
     onTextChange() {
@@ -154,15 +166,16 @@ export class NewAdvertisementComponent implements OnInit {
 
     createAdvert() {
         if (this.newAd.valid) {
-			let files = (<HTMLInputElement>document.getElementById('images')).files; 
+            let files = (<HTMLInputElement>document.getElementById('images'))
+                .files;
             const formdata = new FormData();
             formdata.append('name', this.newAd.get('ad_name')?.value);
-			
+
             formdata.append('location', this.newAd.get('adress')?.value);
             formdata.append('phone', this.newAd.get('ad_phone')?.value);
             formdata.append('cost', this.newAd.get('ad_price')?.value);
             formdata.append('description', this.newAd.get('comment')?.value);
-			
+
             if (this.newAd.get('thirdCategorySelect')!.value) {
                 formdata.append(
                     'categoryId',
@@ -174,37 +187,14 @@ export class NewAdvertisementComponent implements OnInit {
                     this.newAd.get('secondCategorySelect')!.value
                 );
             }
-			
-			if (files && files!.length>0) {
-				for(let i = 0; i < this.newAd.get('ad_image')!.value.length!; i++) {
-				  formdata.append('Images', files[i]!);
-				}
-			}
-           this.advertService.CreateAd(formdata).subscribe();
+
+            if (files && files!.length > 0) {
+                for (let file of this.FilesArray) {
+                    formdata.append('Images', file.file);
+                }
+            }
+            this.advertService.CreateAd(formdata).subscribe();
+            this.router.navigate(['']);
         }
-
-        // if (this.newAd.value.ad_image) {
-        // 	let files : FileList = this.newAd.value.ad_image
-        // 	for (let i = 0; i < files.length!; i++) {
-        // 		formdata.append('Images', files.item(i)!, files.item(i)!.name);
-
-        // 	}
-        // }
     }
-
-    //   selectParentCategory(event) {
-    // 	const categoryId = event.value;
-    // 	this.apiService.getSubcategories(categoryId).subscribe(subcategories => {
-    // 	  this.subcategories = subcategories;
-    // 	  this.childCategoryControl.setValue(null); // Очищаем значение второго dropdown
-    // 	});
-    //   }
-
-    // selectCategory(value: string): Array<Category> {
-    //     return (this.cat = this.cat.filter((obj) => obj.parentId == value));
-    // }
-
-
-    // countries: any[] | undefined;
-    // selectedCity: any;
 }

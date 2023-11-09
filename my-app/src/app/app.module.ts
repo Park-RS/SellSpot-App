@@ -29,9 +29,9 @@ import { CardComponent } from './components/card/card.component';
 import { CategoriesComponent } from './layout/header/components/categories/categories.component';
 import { BulletinBoardComponent } from './components/bulletin-board/bulletin-board.component';
 import { UserAdvertisementsComponent } from './components/user-advertisements/user-advertisements.component';
-import {GalleriaModule} from 'primeng/galleria';
+import { GalleriaModule } from 'primeng/galleria';
 import { LoginInterceptor } from './components/Authorization/login/login.interceptor';
-
+import { ShowPhoneComponent } from './components/advertisement/components/show-phone/show-phone.component';
 
 @NgModule({
     declarations: [
@@ -46,8 +46,8 @@ import { LoginInterceptor } from './components/Authorization/login/login.interce
         UserSettingsComponent,
         CardComponent,
         CategoriesComponent,
-		BulletinBoardComponent,
-  UserAdvertisementsComponent,
+        BulletinBoardComponent,
+        UserAdvertisementsComponent,
     ],
     imports: [
         BrowserModule,
@@ -67,12 +67,10 @@ import { LoginInterceptor } from './components/Authorization/login/login.interce
         FileUploadModule,
         PasswordModule,
         InputMaskModule,
-		CascadeSelectModule,
-		GalleriaModule,
+        CascadeSelectModule,
+        GalleriaModule,
     ],
-    providers: [
-
-	],
+    providers: [],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

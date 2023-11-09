@@ -15,3 +15,13 @@ export interface Advert {
 	createdAt:string;
 	category: Category;
 }
+
+export interface UserAdvert {
+	id: string;
+	createdAt:string;
+	cost: number;
+	imagesIds: string[];
+	isActive: boolean;
+	location:string
+	name: string;
+}

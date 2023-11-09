@@ -1,0 +1,40 @@
+.phone__box {
+    padding: 24px;
+    & h4 {
+        color: var(--light-text-default-text, #1e293b);
+
+        /* Heading / h4 / semibold-600 */
+        font-family: "Inter";
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px; /* 133.333% */
+    }
+    & h3 {
+        margin-top: 24px;
+        color: var(--light-text-primary-text, #3b82f6);
+        font-family: "Inter";
+        font-size: 30px;
+        font-weight: 400;
+    }
+}
+.phone {
+    width: 516px;
+    height: 340px;
+}
+.phone__line {
+    width: 468px;
+    height: 1px;
+    margin-top: 16px;
+    background: #e2e8f0;
+}
+.phone__list {
+	margin-top: 16px;
+    color: var(--light-text-default-text, #1e293b);
+    font-family: "Inter";
+    font-size: 18px;
+    line-height: 24px;
+	& li {
+		text-align: left;
+	}
+	
+}

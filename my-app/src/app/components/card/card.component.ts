@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdvertisementsService } from 'src/app/services/advertisements.service';
-import { Advert } from '../interfaces/advert';
+import { Advert, UserAdvert } from '../interfaces/advert';
 
 @Component({
     selector: 'app-card',
@@ -8,7 +8,7 @@ import { Advert } from '../interfaces/advert';
     styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-	@Input() product!: Advert
+	@Input() product!: UserAdvert
    
 
 	
@@ -19,5 +19,6 @@ export class CardComponent {
 		let src = `http://194.87.237.48:5000/Images/${id}`
 		return src
 	}
+	
 	
 }
