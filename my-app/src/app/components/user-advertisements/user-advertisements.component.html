@@ -1,5 +1,8 @@
 <div class="container">
-    <h4 class="title">Мои объявления</h4>
+    <h4 class="title">
+        Мои объявления (На данный момент у вас:
+        {{ UserAdverts?.length }} активных объявлений)
+    </h4>
     <div class="items items__row">
         <button (click)="newCard()" class="card">
             <div class="card__box">
@@ -16,10 +19,12 @@
                             fill="#3B82F6"
                         />
                     </svg>
-					<p class="card__text">Новое объявление</p>
+                    <p class="card__text">Новое объявление</p>
                 </div>
             </div>
         </button>
-		<app-card *ngFor="let product of UserAdverts" [product]="product"></app-card>
+        <app-card *ngFor="let product of UserAdverts" [product]="product">
+		
+        </app-card>
     </div>
 </div>

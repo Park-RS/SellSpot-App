@@ -10,24 +10,24 @@ const routes: Routes = [
                 (m) => m.BulletinBoardModule
             ),
     },
-    {
-        title: 'Авторизация',
-        path: 'login',
-        loadChildren: () =>
-            import('./components/Authorization/login/login.module').then(
-                (m) => m.LoginModule
-            ),
-        outlet: 'modal',
-    },
-    {
-        title: 'Регистрация',
-        path: 'register',
-        loadChildren: () =>
-            import(
-                './components/Authorization/registration/registration.module'
-            ).then((m) => m.RegistrationModule),
-        outlet: 'modal',
-    },
+    // {
+    //     title: 'Авторизация',
+    //     path: 'login',
+    //     loadChildren: () =>
+    //         import('./components/Authorization/login/login.module').then(
+    //             (m) => m.LoginModule
+    //         ),
+    //     outlet: 'modal',
+    // },
+    // {
+    //     title: 'Регистрация',
+    //     path: 'register',
+    //     loadChildren: () =>
+    //         import(
+    //             './components/Authorization/registration/registration.module'
+    //         ).then((m) => m.RegistrationModule),
+    //     outlet: 'modal',
+    // },
     {
         title: 'Новое объявление',
         path: 'new-advertisement',
@@ -71,6 +71,15 @@ const routes: Routes = [
             import(
                 './components/search/search-input/search-input.module'
             ).then((m) => m.SearchInputModule),
+        
+    },
+	{
+        title: 'Поиск по категории',
+        path: 'category/:query',
+        loadChildren: () =>
+            import(
+                './components/search/category/category.module'
+            ).then((m) => m.SearchCategoryModule),
         
     },
 ];

@@ -22,7 +22,9 @@ export class NewAdvertisementComponent implements OnInit {
     subcategories: string[] = [];
     defaultParentCategoryId: any = '00000000-0000-0000-0000-000000000000';
     defaultCategoryName: any = 'Выберите категорию';
-
+	public mainCategoriesSelected: boolean = false;
+	public subCategoriesSelected: boolean = false;
+	
     FilesArray: { url: string; file: File; size: number; name: string }[] = [];
     suggestions: string[] = [];
     constructor(
@@ -44,6 +46,11 @@ export class NewAdvertisementComponent implements OnInit {
         if (this.newAd.value.secondCategorySelect) {
             console.log(this.newAd.value.secondCategorySelect);
         }
+		
+		if (this.newAd.get('secondCategorySelect')!.value) {
+			this.subCategoriesSelected = !this.subCategoriesSelected
+			
+		}
     }
     _CreateAdvert() {
         this.newAd = this.fb.group({
@@ -63,13 +70,15 @@ export class NewAdvertisementComponent implements OnInit {
         this.onSelectedMain(category);
         this.newAd.get('firstCategorySelect')?.setValue(category);
         console.log(this.newAd.get('firstCategorySelect')?.value);
-        console.log(this.newAd.get('adress')?.value);
+        // console.log(this.newAd.get('adress')?.value);
+		
     }
     onSubChange(event: Event) {
         const subCategory = (event.target as HTMLSelectElement).value;
         this.onSelectedSub(subCategory);
         this.newAd.get('secondCategorySelect')?.setValue(subCategory);
         console.log(this.newAd.get('secondCategorySelect')?.value);
+
     }
     onUnderSubChange(event: Event) {
         const underSubCategory = (event.target as HTMLSelectElement).value;
@@ -82,6 +91,7 @@ export class NewAdvertisementComponent implements OnInit {
             this.subcategoriies = data.childs;
             console.log(this.subcategoriies);
         });
+		
     }
     onSelectedSub(category: string) {
         this.category.getAllWithIdCategories(category).subscribe((resp) => {

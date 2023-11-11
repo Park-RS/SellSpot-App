@@ -16,6 +16,14 @@ export class AdvertisementsService {
             }
         );
     }
+    getAdvertbyCategory(value: string): Observable<any[]> {
+        return this.http.post<any[]>(
+            'http://194.87.237.48:5000/Advert/search',
+            {
+                category: value,
+            }
+        );
+    }
     getImages(id: string): Observable<any[]> {
         return this.http.get<any[]>(`http://194.87.237.48:5000/Images/${id}`);
     }

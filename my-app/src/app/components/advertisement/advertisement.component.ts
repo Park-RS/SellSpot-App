@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { AdvertisementsService } from 'src/app/services/advertisements.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowPhoneComponent } from './components/show-phone/show-phone.component';
+import { imageSrcCreator } from '../Imgcreatefunc/img-create-func';
+import { GalleriaResponsiveOptions } from 'primeng/galleria';
 
 @Component({
     selector: 'app-advertisement',
@@ -14,12 +16,25 @@ import { ShowPhoneComponent } from './components/show-phone/show-phone.component
 })
 export class AdvertisementComponent implements OnInit {
 	@Input()
-    images: any[] | undefined;
+    public images!: string[] 
 	public ProductData!: Advert;
     public productId!: any;
 	
 
-	
+	public responsiveOptions: any[] = [
+		{
+		  breakpoint: '1024px',
+		  numVisible: 5
+		},
+		{
+		  breakpoint: '768px',
+		  numVisible: 3
+		},
+		{
+		  breakpoint: '560px',
+		  numVisible: 1
+		}
+	  ];
 
     // public imageArray!: any;
     // public imageArrays!: any[];
@@ -44,9 +59,17 @@ export class AdvertisementComponent implements OnInit {
                     .subscribe((response) => {
                         console.warn(response);
                         this.ProductData = response;
-                        this.images = this.ProductData.imagesIds;
+                        if (this.ProductData.imagesIds.length) {
+							// this.images = this.ProductData.imagesIds.map((id) => imageSrcCreator(id))
+							this.images = this.ProductData.imagesIds.map((id) => imageSrcCreator(id))
+							
+						}
+						else{
+							this.images = [imageSrcCreator()]
+						}
                     });
         });
+		
 		
     }
     imgSrc(id: string) {

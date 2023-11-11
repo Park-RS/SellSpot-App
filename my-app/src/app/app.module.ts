@@ -32,6 +32,7 @@ import { UserAdvertisementsComponent } from './components/user-advertisements/us
 import { GalleriaModule } from 'primeng/galleria';
 import { LoginInterceptor } from './components/Authorization/login/login.interceptor';
 import { ShowPhoneComponent } from './components/advertisement/components/show-phone/show-phone.component';
+import { AuthModule } from './components/Authorization/auth.module';
 
 @NgModule({
     declarations: [
@@ -39,15 +40,16 @@ import { ShowPhoneComponent } from './components/advertisement/components/show-p
         HeaderComponent,
         CategoryComponent,
         SearchInputComponent,
-        RegistrationComponent,
         NewAdvertisementComponent,
-        LoginComponent,
         AdvertisementComponent,
         UserSettingsComponent,
         CardComponent,
         CategoriesComponent,
         BulletinBoardComponent,
         UserAdvertisementsComponent,
+		
+		// LoginComponent,
+		// RegistrationComponent,
     ],
     imports: [
         BrowserModule,
@@ -69,6 +71,7 @@ import { ShowPhoneComponent } from './components/advertisement/components/show-p
         InputMaskModule,
         CascadeSelectModule,
         GalleriaModule,
+		AuthModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -11,17 +11,20 @@
                             type="text"
                             pInputText
                             formControlName="user_name"
+							
                         />
                     </div>
                     <div class="settings__phone">
                         <div class="inputname">Номер телефона</div>
-                        <p-inputMask
+                        <input
                             formControlName="user_phone"
-                            styleClass="p-inputMask"
-                            mask="+7 (999) 999-99-99"
+							pInputText
+                            
+                           
                             placeholder="+7 (999) 999-99-99"
-                            [style]="{ width: '416px' }"
-                        ></p-inputMask>
+                            
+							style="width: 416px; height: 48px;"
+                        >
                     </div>
                 </div>
                 <div class="settings__address">
@@ -54,8 +57,10 @@
                     ></p-password>
                 </div>
                 <div class="settings__newpass">
-                    <div class="inputname">Новый пароль</div>
+                    <div  class="inputname">Новый пароль</div>
+					
                     <p-password
+					
                         class="w-full"
                         styleClass="p-password"
                         [feedback]="false"
@@ -69,6 +74,7 @@
                     label="Изменить пароль"
                     class="settings-button-2"
                     pButton
+					(click)="changePass()"
                 ></button>
             </form>
         </div>

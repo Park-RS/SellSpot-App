@@ -3,23 +3,38 @@
         <div class="advertisement__row">
             <div class="advertisement__main">
                 <div class="advertisement__title">{{ ProductData.name }}</div>
-				<!-- <div *ngFor="let image of images">
+                <!-- <div *ngFor="let image of images">
 					<img [src]="image.src" alt="photo item" class="advertisement__img" />
 				  </div> -->
-				  <div class="advertisement__img-block">
+                <!-- <div class="advertisement__img-block">
 					<img
                     [src]="imgSrc(ProductData.imagesIds[0])"
                     alt="photo item"
                     class="advertisement__img"
                 />
-				  </div>
-				  
+				  </div> -->
+                <div class="advertisement__galleria" *ngIf="images.length > 0">
+                    <p-galleria [value]="images" [numVisible]="5">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item" class="advertisement__galleria-item" />
+                        </ng-template>
+                        <ng-template pTemplate="thumbnail" let-item>
+                            <div class="advertisement__galleria-img">
+                                <img [src]="item" class="advertisement__galleria-thumbnail" />
+                            </div>
+                        </ng-template>
+                    </p-galleria>
+                </div>
             </div>
             <div class="advertisement__info">
                 <h3 class="advertisement__price">
                     {{ ProductData.cost | number : "1.0-0" }} ₽
                 </h3>
-                <button pButton class="advertisement__button" (click)="openDialog()">
+                <button
+                    pButton
+                    class="advertisement__button"
+                    (click)="openDialog()"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="28"
@@ -40,7 +55,6 @@
                     </svg>
                     <div>Показать номер телефона</div>
                 </button>
-				
 
                 <div class="advertisement__address-info">
                     <h4>Адрес</h4>
