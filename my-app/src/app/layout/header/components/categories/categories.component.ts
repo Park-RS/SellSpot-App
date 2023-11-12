@@ -11,6 +11,7 @@ import { map } from 'rxjs';
     styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
+	public test!:string;
     public maincat!: string;
 	public maincatid!: any[];
     public subcat: any;
@@ -29,11 +30,14 @@ export class CategoriesComponent implements OnInit {
             .getAllWithIdCategories(this.MainParentCategoryId)
             .subscribe((response) => {
                 this.main_categories = response.childs;
+				
                 // this.maincat = this.main_categories;
                 // console.log(this.main_categories);
             });
     }
+
     getSubCategories(categoryId: any) {
+		this.underSubCategories=[]
         this.categoriesService
             .getAllWithIdCategories(categoryId)
             .subscribe((data) => {
@@ -60,20 +64,6 @@ export class CategoriesComponent implements OnInit {
 			this.maincat = data.childs.map((item: {id:string}) => item.id)
 			console.log(this.maincat);
 			this.advertServ.getAdvertbyCategory(this.maincat).subscribe()
-			
-			
-			
-			
-			
-			
-
-			this.advertServ.getAdvertbyCategory(data.childs.id).subscribe((resp)=>
-		{
-			console.log(resp);
-			this.advertServ.getAdvertbyCategory(data.childs.id).subscribe((resp)=> console.log(resp)
-			)
-			
-		})
 			
 			
 		})

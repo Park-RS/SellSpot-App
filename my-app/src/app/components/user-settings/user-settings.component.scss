@@ -61,15 +61,21 @@
     font-weight: 600;
 }
 .settings-button-1 {
+	color: #fff;
     margin-top: 24px;
 	width: 132px;
 	height: 48px;
+	background: var(--light-utility-primary, #3B82F6);
+	border-radius: 4px;
 	
 }
 .settings-button-2 {
+	color: #fff;
+	background: var(--light-utility-primary, #3B82F6);
     margin-top: 24px;
 	width: 186px;
 	height: 48px;
+	border-radius: 4px;
 }
 .settings__currentpass {
     margin-top: 24px;
